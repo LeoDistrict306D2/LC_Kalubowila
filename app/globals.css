@@ -1,0 +1,198 @@
+@import 'tailwindcss';
+
+/*
+ * Leo Club of Kalubowila — "Care Ledger"
+ *
+ * Kalubowila is a teaching-hospital neighbourhood, and the club's work reflects
+ * that: clinical, counted, reported. So the site is built like an annual
+ * report rather than a brochure. Projects live in a real data table with
+ * right-aligned figures. Statistics are the primary content, not a decorative
+ * band.
+ *
+ * The discipline: no adjective appears where a number would do. If a claim
+ * cannot be counted, it does not go on the page.
+ *
+ * Token names are ROLES, not hues.
+ */
+
+@theme {
+  /* --- Surfaces ------------------------------------------------------- */
+  --color-page: #ffffff;
+  --color-panel: #f3f7f7;
+  --color-inverse: #0f3d41;
+  --color-on-inverse: #eaf4f4;
+
+  /* --- Text ----------------------------------------------------------- */
+  --color-ink: #10262a;
+  --color-ink-muted: #46605f;
+  --color-ink-faint: #7b908f;
+
+  /* --- Accents --------------------------------------------------------- */
+  /* Teal carries interaction. Coral marks a figure that needs attention —
+     used sparingly, never as a background for body text. */
+  --color-accent: #0f5257;
+  --color-accent-strong: #093a3e;
+  --color-flag: #c9503f;
+
+  /* --- Lines ----------------------------------------------------------- */
+  --color-rule: #dde8e8;
+  --color-rule-strong: #b3c8c7;
+
+  /* --- Type ------------------------------------------------------------ */
+  --font-heading: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+
+  --text-report: 3.25rem;
+  --text-report--line-height: 1.06;
+  --text-report--letter-spacing: -0.03em;
+
+  --ease-precise: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Every figure on this site is tabular by default — columns of numbers must
+     line up, and this is a site made of columns of numbers. */
+  td,
+  th,
+  dd,
+  .figure {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .wrap {
+      padding-inline: 2rem;
+    }
+  }
+
+  .measure {
+    max-width: 38rem;
+  }
+
+  .band {
+    padding-block: 4.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .band {
+      padding-block: 6.5rem;
+    }
+  }
+
+  /*
+   * The ledger table. Wrapped in its own scroll container so a wide table
+   * scrolls itself instead of pushing the page sideways — the failure mode of
+   * every unwrapped table on a phone.
+   */
+  .ledger-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ledger {
+    width: 100%;
+    min-width: 42rem;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  .ledger th {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+    padding-block: 0.75rem;
+    border-bottom: 2px solid var(--color-ink);
+    vertical-align: bottom;
+  }
+
+  .ledger td {
+    padding-block: 1.1rem;
+    border-bottom: 1px solid var(--color-rule);
+    vertical-align: baseline;
+  }
+
+  .ledger .num {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .ledger tbody tr:hover {
+    background-color: var(--color-panel);
+  }
+
+  /* A figure that needs attention — a decline, a shortfall, a target missed. */
+  .flagged {
+    color: var(--color-flag);
+  }
+
+  /*
+   * Reveal. Short and precise: a report should feel typeset, not animated.
+   */
+  .reveal {
+    transition:
+      opacity 350ms var(--ease-precise),
+      transform 350ms var(--ease-precise);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal.is-hidden {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
