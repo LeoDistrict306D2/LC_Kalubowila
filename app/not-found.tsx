@@ -10,7 +10,7 @@ export default function NotFound() {
         No entry at that address.
       </h1>
       <p className="measure mt-5 text-lg text-ink-muted">
-        The page you asked for is not in the ledger. It may have been renamed, or never existed.
+        The page you asked for doesn&rsquo;t exist. It may have been renamed, or never existed.
       </p>
       <div className="mt-8 flex flex-wrap gap-3">
         <Link href="/" className="bg-accent px-6 py-3 font-heading text-sm font-semibold text-page hover:bg-accent-strong">
@@ -20,7 +20,7 @@ export default function NotFound() {
           href="/projects"
           className="border border-rule-strong px-6 py-3 font-heading text-sm font-semibold text-ink-muted hover:border-ink hover:text-ink"
         >
-          Project ledger
+          Our projects
         </Link>
       </div>
     </div>

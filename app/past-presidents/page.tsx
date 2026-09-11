@@ -17,7 +17,7 @@ export default function PastPresidentsPage() {
       <PageMasthead
         kicker={`${years.length} terms`}
         title="Succession."
-        standfirst="Every president since charter, with the theme they served under."
+        standfirst="Every president since the club's charter in 2001, with the theme they served under — where one was recorded."
       />
 
       <div className="wrap band">

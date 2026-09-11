@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: Params) {
         kicker={`${project.year} · ${project.category.replace(/-/g, ' ')}`}
         title={project.title}
         standfirst={project.summary}
-        breadcrumb={{ href: '/projects', label: 'Back to the ledger' }}
+        breadcrumb={{ href: '/projects', label: 'All projects' }}
       />
 
       {/* Reported figures come first — this club leads with the numbers. */}

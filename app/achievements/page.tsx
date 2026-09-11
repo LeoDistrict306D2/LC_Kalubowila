@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Award } from 'lucide-react';
 import { club } from '@/content/club';
 import { achievements } from '@/content/achievements';
 import { PageMasthead } from '@/components/PageMasthead';
@@ -22,47 +23,38 @@ export default function AchievementsPage() {
   return (
     <>
       <PageMasthead
-        kicker={awards.length > 0 ? `${awards.length} awards` : 'Awards'}
+        kicker={awards.length > 0 ? `${awards.length} district award` : 'Awards'}
         title="Recognition."
-        standfirst="Listed for completeness. They are an outcome of the reporting discipline, not a substitute for it."
+        standfirst="Earned, not chased — an outcome of the work, not the reason for it."
       />
 
       <div className="wrap band">
         {awards.length === 0 ? (
           <p className="measure text-ink-muted">No awards recorded yet.</p>
         ) : (
-          <div className="ledger-scroll">
-            <table className="ledger">
-              <caption className="sr-only">Awards by year, newest first.</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Year</th>
-                  <th scope="col">Award</th>
-                  <th scope="col">Awarded by</th>
-                  <th scope="col">Result</th>
-                </tr>
-              </thead>
-              <tbody>
-                {awards.map((award) => (
-                  <tr key={award.id}>
-                    <td className="font-heading font-semibold whitespace-nowrap">{award.year}</td>
-                    <td>
-                      <span className="font-heading font-semibold">{award.title}</span>
-                      {award.description ? (
-                        <span className="mt-0.5 block max-w-md text-sm leading-relaxed text-ink-muted">
-                          {award.description}
-                        </span>
-                      ) : null}
-                    </td>
-                    <td className="text-sm text-ink-muted">{award.competition ?? '—'}</td>
-                    <td className="text-sm whitespace-nowrap">
-                      {award.level ? (levelLabel[award.level] ?? award.level) : '—'}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ul className="grid gap-6 sm:grid-cols-2">
+            {awards.map((award) => (
+              <li
+                key={award.id}
+                className="rounded-2xl border border-rule bg-page p-7 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-accent">
+                  <Award aria-hidden size={22} />
+                </div>
+                <p className="mt-5 font-heading text-xs font-semibold tracking-[0.14em] text-ink-faint uppercase">
+                  {award.year}
+                  {award.level ? ` · ${levelLabel[award.level] ?? award.level}` : ''}
+                </p>
+                <h2 className="mt-1.5 font-heading text-xl font-semibold text-ink">{award.title}</h2>
+                {award.competition ? (
+                  <p className="mt-1 text-sm text-ink-muted">{award.competition}</p>
+                ) : null}
+                {award.description ? (
+                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">{award.description}</p>
+                ) : null}
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </>

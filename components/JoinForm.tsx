@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 /**
- * Membership enquiry form.
+ * Quick-enquiry form — a secondary path alongside the club's own membership
+ * form (see app/join/page.tsx for the primary, external link).
  *
  * No backend, so rather than render a form that silently discards what people
  * type, this composes a pre-filled email and hands it to the visitor's mail
@@ -23,7 +24,6 @@ export function JoinForm({ email }: { email: string }) {
       `Name: ${name}`,
       `Age: ${String(data.get('age') ?? '')}`,
       `Area: ${String(data.get('area') ?? '')}`,
-      `Hours available per month: ${String(data.get('hours') ?? '')}`,
       '',
       String(data.get('message') ?? ''),
     ].join('\n');
@@ -60,15 +60,6 @@ export function JoinForm({ email }: { email: string }) {
             Area
           </label>
           <input id="join-area" name="area" type="text" required className={field} />
-        </div>
-        <div className="sm:col-span-2">
-          <label htmlFor="join-hours" className={label}>
-            Hours you can give per month
-          </label>
-          <input id="join-hours" name="hours" type="number" min={0} max={200} className={field} />
-          <p className="mt-1.5 text-xs text-ink-faint">
-            An honest small number is more useful to us than an optimistic large one.
-          </p>
         </div>
         <div className="sm:col-span-2">
           <label htmlFor="join-message" className={label}>

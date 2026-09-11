@@ -1,162 +1,122 @@
 import type { Project } from '@/lib/types';
 
 /**
- * Project records.
+ * Projects, 2026/27 Leoistic year — as submitted by the club, with photos
+ * from the same submission. The Leo/Lions year runs July to June, so these
+ * four (18 July – 22 August 2026) mark the opening of the new year, ending
+ * with the installation of the board at ORCENZA’26.
  *
- * Every entry carries the club's four reporting figures — reach, cost, hours,
- * and a follow-up result — because the ledger table on the projects page reads
- * them as columns. A project missing `impact` still renders, but it will show
- * blank cells, which is the intended pressure.
- *
- * TODO(content): illustrative records in the club's format. Replace with real
- * project data; `heroImage` points at the shared placeholder until real
- * photography exists.
+ * "Category" values on the club's original form (e.g. "Best Project for
+ * Hunger") are district convention submission categories, not confirmed
+ * results — they are folded into each project's story as "submitted in the
+ * category of…" rather than claimed as wins, since the form does not state
+ * an outcome for them. The one confirmed award is in achievements.ts.
  */
-const placeholder = (alt: string) => ({
-  src: '/images/projects/placeholder.png',
-  alt,
-  width: 1600,
-  height: 1000,
-});
-
 export const projects: Project[] = [
   {
-    id: 'ward-meals',
-    slug: 'ward-meals',
-    title: 'Ward Meals',
+    id: 'thuru',
+    slug: 'thuru',
+    title: 'Thuru',
     summary:
-      'Evening meals for the families of long-stay patients at Colombo South Teaching Hospital, served four nights a week.',
-    category: 'health',
-    year: '2025/26',
-    date: '2025-09-01',
-    location: 'Colombo South Teaching Hospital',
+      'An environmental planting drive distributing 50 fruit and vegetable saplings to the community, run jointly with the Lions Club of Colombo Kalubowila.',
+    category: 'environment',
+    year: '2026/27',
+    date: '2026-07-24',
     featured: true,
-    heroImage: placeholder('Volunteers serving evening meals to patients families'),
+    heroImage: {
+      src: '/images/projects/thuru/hero.jpg',
+      alt: 'Leo Club of Kalubowila members with fruit and vegetable saplings for Project Thuru',
+      width: 2200,
+      height: 1238,
+    },
+    gallery: [
+      { src: '/images/projects/thuru/g1.jpg', alt: 'Saplings prepared for distribution at Project Thuru', width: 900, height: 1600 },
+      { src: '/images/projects/thuru/g2.jpg', alt: 'A community member receiving a sapling at Project Thuru', width: 900, height: 1600 },
+      { src: '/images/projects/thuru/g3.jpg', alt: 'Members of the Leo Club of Kalubowila at Project Thuru', width: 900, height: 1600 },
+    ],
     story: [
-      'Families who travel in from outside the district to sit with a long-stay patient often have nowhere to eat and no money to spend on eating. Some were going without for the length of an admission.',
-      'The project serves 60 meals a night, four nights a week, from a kitchen rota of eleven members. It has run without a missed night for nineteen months.',
-      'The cost per meal is Rs 214, which we publish because people ask and because it is the number that decides whether this can be scaled to a fifth night.',
+      'Thuru was run in joint collaboration with the Lions Club of Colombo Kalubowila, centred on a shared commitment to environmental protection and community well-being. As part of the initiative, the club distributed 50 fruit and vegetable saplings to local community members.',
+      'Beyond the physical distribution, the project served as a step toward protecting the environment, promoting home agriculture, and educating the community on environmental stewardship, biodiversity, and sustainable living.',
+      'The project was submitted in the district convention categories of Best Project for Hunger and Best Project for Health, Nutrition & Food Safety.',
     ],
-    objectives: [
-      'Serve 60 meals a night, four nights a week, without gaps',
-      'Hold cost per meal under Rs 250',
-      'Recruit enough kitchen volunteers to survive exam season',
-    ],
-    impact: [
-      { id: 'meals', value: 18720, label: 'Meals served' },
-      { id: 'reach', value: 1240, label: 'People reached' },
-      { id: 'cost', value: 4006080, prefix: 'Rs ', label: 'Total cost' },
-      { id: 'hours', value: 3040, label: 'Volunteer hours' },
-    ],
-    partners: [{ name: 'Colombo South Teaching Hospital' }],
+    impact: [{ id: 'saplings', value: 50, label: 'Saplings distributed' }],
+    partners: [{ name: 'Lions Club of Colombo Kalubowila' }],
   },
   {
-    id: 'blood-quarterly',
-    slug: 'blood-quarterly',
-    title: 'Quarterly Blood Drive',
+    id: 'hot-takes-fc-fifa-26',
+    slug: 'hot-takes-fc-fifa-26',
+    title: 'Hot Takes FC — FIFA ’26',
     summary:
-      'A donation camp every quarter with the National Blood Transfusion Service, held at the community centre.',
-    category: 'health',
-    year: '2025/26',
-    date: '2025-07-12',
-    location: 'Kalubowila Community Centre',
+      'An interactive Leo engagement initiative connecting Leos and football fans across districts through match discussions, predictions and a published FIFA handbook.',
+    category: 'fellowship',
+    year: '2026/27',
+    date: '2026-07-27',
     featured: true,
-    heroImage: placeholder('Donors at the quarterly blood donation camp'),
+    heroImage: {
+      src: '/images/projects/placeholder.png',
+      alt: 'FIFA Match Day — no photograph on file yet',
+      width: 1600,
+      height: 1000,
+    },
     story: [
-      'Four camps a year, on a fixed calendar published twelve months ahead. Regular donors need a date they can plan around; ad-hoc camps get ad-hoc turnout.',
-      'Collection has risen every year except 2023, when we moved the venue and lost roughly a third of the returning donors. We moved it back.',
+      'FIFA Match Day was an interactive engagement initiative designed to bring Leos and football enthusiasts together beyond geographical boundaries. A dedicated group chat actively engaged Leos from other districts and external participants through match discussions, predictions, updates and friendly interactions.',
+      'To add educational value, the club published a FIFA Handbook featuring facts, lesser-known stories, records and insights about the FIFA World Cup. Combining sport, knowledge, networking and digital engagement, the project connected participants while making match day more exciting and meaningful.',
+      'The project was submitted in the district convention categories of Best Project for Fellowship and Most Innovative Project.',
     ],
-    impact: [
-      { id: 'units', value: 412, label: 'Units collected' },
-      { id: 'reach', value: 486, label: 'Donors attended' },
-      { id: 'cost', value: 168000, prefix: 'Rs ', label: 'Total cost' },
-      { id: 'hours', value: 640, label: 'Volunteer hours' },
-    ],
-    partners: [{ name: 'National Blood Transfusion Service' }],
   },
   {
-    id: 'school-eyes',
-    slug: 'school-eyes',
-    title: 'School Eye Screening',
+    id: 'sadaham-wandana-26',
+    slug: 'sadaham-wandana-26',
+    title: 'සදහම් වන්දනා ’26',
     summary:
-      'Vision screening for Grade 1–5 students at four schools, with referral and spectacle funding for those who need it.',
-    category: 'health',
-    year: '2024/25',
-    date: '2025-01-25',
-    location: 'Kalubowila and Dehiwala',
+      'A Bodhi Pooja held to invoke blessings for the new Leoistic year, attended by the District President and club executives.',
+    category: 'culture',
+    year: '2026/27',
+    date: '2026-07-18',
     featured: true,
-    heroImage: placeholder('A vision screening session at a primary school'),
+    heroImage: {
+      src: '/images/projects/sadaham-wandana/hero.jpg',
+      alt: 'The Sadaham Wandana Bodhi Pooja marking the start of the 2026/27 Leoistic year',
+      width: 2200,
+      height: 1650,
+    },
+    gallery: [
+      { src: '/images/projects/sadaham-wandana/g1.jpg', alt: 'Club members at the Sadaham Wandana Bodhi Pooja', width: 1200, height: 1600 },
+    ],
     story: [
-      'Screening is the easy half. The number that matters is how many children who failed the screening actually ended up wearing spectacles, and the first year we ran this we did not know, because we never checked.',
-      'We check now. Of 214 referred, 178 were fitted within four months. The remaining 36 are the reason the follow-up column exists.',
-    ],
-    objectives: [
-      'Screen every student in Grades 1 to 5 across four schools',
-      'Fund spectacles for referred students whose families cannot',
-      'Confirm at four months how many are actually wearing them',
-    ],
-    impact: [
-      { id: 'screened', value: 1360, label: 'Students screened' },
-      { id: 'reach', value: 214, label: 'Referred onward' },
-      { id: 'fitted', value: 178, label: 'Fitted at 4 months' },
-      { id: 'cost', value: 512000, prefix: 'Rs ', label: 'Total cost' },
+      'The Sadaham Wandana Bodhi Pooja was organised to invoke blessings for the new Leoistic year. The ceremony was graced by the District President, club executives, and fellow members, who gathered in unity and devotion to begin the year with spiritual strength and guidance.',
+      'The occasion reflected the values of service, leadership and togetherness as the club stepped into a new chapter.',
     ],
   },
   {
-    id: 'exam-support',
-    slug: 'exam-support',
-    title: 'O/L Exam Support',
+    id: 'orcenza-26',
+    slug: 'orcenza-26',
+    title: 'ORCENZA ’26',
     summary:
-      'Weekend tutoring for O/L candidates in three schools. Ran one term short of the plan.',
-    category: 'education',
-    year: '2024/25',
-    date: '2024-09-14',
-    location: 'Kalubowila',
-    heroImage: placeholder('A weekend O/L tutoring session'),
+      'The club’s 26th Installation Ceremony, inducting the 2026/27 executive board.',
+    category: 'leadership',
+    year: '2026/27',
+    date: '2026-08-22',
+    featured: true,
+    heroImage: {
+      src: '/images/projects/orcenza-26/hero.jpg',
+      alt: 'The 2026/27 executive board of the Leo Club of Kalubowila at ORCENZA’26',
+      width: 2200,
+      height: 1238,
+    },
+    gallery: [
+      { src: '/images/projects/orcenza-26/g1.jpg', alt: 'ORCENZA’26 installation ceremony', width: 900, height: 1600 },
+      { src: '/images/projects/orcenza-26/g2.jpg', alt: 'ORCENZA’26 installation ceremony', width: 900, height: 1600 },
+      { src: '/images/projects/orcenza-26/g3.jpg', alt: 'ORCENZA’26 installation ceremony', width: 900, height: 1600 },
+      { src: '/images/projects/orcenza-26/g4.jpg', alt: 'ORCENZA’26 installation ceremony', width: 1600, height: 900 },
+      { src: '/images/projects/orcenza-26/g5.jpg', alt: 'ORCENZA’26 installation ceremony', width: 1600, height: 900 },
+      { src: '/images/projects/orcenza-26/g6.jpg', alt: 'ORCENZA’26 installation ceremony', width: 1600, height: 900 },
+      { src: '/images/projects/orcenza-26/g7.jpg', alt: 'ORCENZA’26 installation ceremony', width: 900, height: 1600 },
+    ],
     story: [
-      'This one is in the table because it did not work as intended, and removing it would make the rest of the table meaningless.',
-      'The plan was three terms. We ran two. Tutor availability collapsed in the second term when six of our nine tutors hit their own university exams, and we had no reserve. Attendance fell from 84% to 51% before we stopped.',
-      'The lesson was recruitment depth, not commitment. The 2025 tutoring programme runs with fourteen tutors for the same student numbers.',
-    ],
-    impact: [
-      { id: 'reach', value: 61, label: 'Students enrolled' },
-      { id: 'sessions', value: 18, label: 'Sessions run', note: 'Against 27 planned' },
-      { id: 'cost', value: 96000, prefix: 'Rs ', label: 'Total cost' },
-      { id: 'hours', value: 430, label: 'Volunteer hours' },
-    ],
-  },
-  {
-    id: 'ward-library',
-    slug: 'ward-library',
-    title: 'Paediatric Ward Library',
-    summary: 'A book trolley and reading hour for the children’s wards, twice weekly.',
-    category: 'community-service',
-    year: '2023/24',
-    date: '2024-03-09',
-    location: 'Colombo South Teaching Hospital',
-    heroImage: placeholder('A book trolley in the paediatric ward'),
-    impact: [
-      { id: 'reach', value: 890, label: 'Children reached' },
-      { id: 'books', value: 460, label: 'Books in circulation' },
-      { id: 'cost', value: 142000, prefix: 'Rs ', label: 'Total cost' },
-      { id: 'hours', value: 780, label: 'Volunteer hours' },
-    ],
-  },
-  {
-    id: 'flood-relief',
-    slug: 'flood-relief',
-    title: 'Flood Relief',
-    summary: 'Emergency supply distribution after the May floods, run over nine days.',
-    category: 'community-service',
-    year: '2023/24',
-    date: '2023-05-22',
-    location: 'Dehiwala and Kalubowila',
-    heroImage: placeholder('Volunteers packing emergency relief supplies'),
-    impact: [
-      { id: 'reach', value: 620, label: 'Households reached' },
-      { id: 'packs', value: 620, label: 'Supply packs' },
-      { id: 'cost', value: 1240000, prefix: 'Rs ', label: 'Total cost' },
-      { id: 'hours', value: 1180, label: 'Volunteer hours' },
+      'The Leo Club of Kalubowila unveiled ORCENZA’26, its 26th Installation Ceremony, with the induction of the new executive board.',
+      'The evening was graced by Chief Guest Leo Lion Buddhika Abenayake (District President, Leo District 306 D2), Guest of Honour Leo Lion Thameera Dananjaya (Immediate Past District President, Leo District 306 D2), and Special Guest Leo Lion Kesari Senevirathne PMJF (Past Multiple District President, Leo Multiple District 306).',
+      'ORCENZA’26 embodied the spirit of Leoism: guiding the present, inspiring the future, and igniting passion for service in every heart.',
     ],
   },
 ];

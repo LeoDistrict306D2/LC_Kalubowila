@@ -46,7 +46,13 @@ const jsonLd = {
   foundingDate: club.charterDate,
   email: club.contact.email,
   parentOrganization: { '@type': 'Organization', name: club.district, url: club.districtUrl },
-  sameAs: [club.socials.facebook, club.socials.instagram].filter(Boolean),
+  sameAs: [
+    club.socials.facebook,
+    club.socials.instagram,
+    club.socials.linkedin,
+    club.socials.youtube,
+    club.socials.tiktok,
+  ].filter(Boolean),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -25,6 +25,8 @@ export interface SocialLinks {
   linkedin?: string;
   youtube?: string;
   tiktok?: string;
+  /** A broadcast/follow channel link, not a 1:1 chat number. */
+  whatsapp?: string;
   email?: string;
 }
 
@@ -50,7 +52,9 @@ export type ExecutiveRank =
   | 'editor'
   | 'chairperson'
   | 'director'
-  | 'member';
+  | 'member'
+  /** Lion Advisor / Senior Leo — outside the elected line, listed last. */
+  | 'advisor';
 
 export interface Executive {
   id: string;
@@ -75,7 +79,11 @@ export type ProjectCategory =
   | 'youth-development'
   | 'fundraising'
   | 'leadership'
-  | 'international';
+  | 'international'
+  /** Fellowship / networking projects — Leo's own term for this pillar. */
+  | 'fellowship'
+  /** Religious or cultural observances (a Bodhi Pooja, a New Year event). */
+  | 'culture';
 
 export interface Project {
   id: string;
@@ -135,6 +143,12 @@ export interface Club {
   description: string;
   /** ISO date the club was chartered. */
   charterDate?: string;
+  /** Lions Clubs International club number, e.g. "74159/1139". */
+  clubNumber?: string;
+  /** District type classification, e.g. "Community Based". */
+  clubType?: string;
+  region?: string;
+  zone?: string;
   district: string;
   multipleDistrict: string;
   sponsoringLionsClub?: string;
@@ -150,6 +164,12 @@ export interface Club {
   socials: SocialLinks;
   /** Production origin, for canonical URLs and OG tags. */
   siteUrl: string;
+  /** Bank details for public donations, where the club accepts them. */
+  donations?: {
+    bank: string;
+    branch?: string;
+    accountNumber: string;
+  };
   stats: Statistic[];
   about: {
     story: string[];

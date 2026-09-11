@@ -2,14 +2,13 @@
 
 Next.js 16 · React 19 · TypeScript · Tailwind CSS v4
 
-**Design concept: *Care Ledger*.** Kalubowila is a teaching-hospital
-neighbourhood and the club's work is clinical, counted and reported — so the
-site is built like an annual report, not a brochure. Projects live in a **real
-`<table>`** with right-aligned figures; statistics are the primary content, not
-a decorative band.
-
-The editorial discipline: no adjective where a number would do. If a claim
-cannot be counted, it does not go on the page.
+**Design concept: *Care Ledger*.** The club's work is presented plainly and
+numerically — so the site is built like a clean annual record, not a
+brochure. Projects live in a **real `<table>`** with a Date/Project/Category
+layout; statistics are the primary content, not a decorative band. The
+palette (Deep Teal, Teal, Silver) is the club's own brand colour, which
+matched this concept closely enough that the design didn't need to change
+once real content arrived.
 
 One of eleven independently designed club sites in Leo District 306 D2. It
 shares no design code with the others; only `lib/` is common.
@@ -50,11 +49,11 @@ Tokens live in the `@theme` block at the top of `app/globals.css`, named by
 | Token | Value | Used for |
 |---|---|---|
 | `--color-page` | `#ffffff` | Page ground |
-| `--color-panel` | `#f3f7f7` | Alternate bands, row hover |
-| `--color-ink` | `#10262a` | Text, heavy rules |
-| `--color-accent` | `#0f5257` | Links, buttons — teal carries interaction |
-| `--color-flag` | `#c9503f` | A figure needing attention. **Sparingly** |
-| `--color-inverse` | `#0f3d41` | Closing band |
+| `--color-panel` | `#f2f5f5` | Alternate bands, row hover |
+| `--color-ink` | `#0c2323` | Text, heavy rules |
+| `--color-accent` | `#057a7a` | Links, buttons — the club's brand Teal |
+| `--color-accent-strong` | `#023131` | Hover/active state — brand Deep Teal |
+| `--color-inverse` | `#023131` | Closing band |
 
 Type: Inter Tight (headings) + IBM Plex Sans (body), self-hosted via
 `next/font`. Plex was chosen for its tabular figures — this site's central
@@ -66,13 +65,13 @@ layer, so columns of figures always line up.
 ### The ledger
 
 `components/LedgerTable.tsx` is a genuine `<table>` with `<th scope="col">`
-headers and a `<caption>`, because this really is tabular data — the club's whole
-method is that figures can be compared down a column. It sits inside
-`.ledger-scroll` so a wide table scrolls itself on a phone rather than pushing
-the page sideways.
+headers and a `<caption>`, listing every project by Date, Project and
+Category. It sits inside `.ledger-scroll` so a wide table scrolls itself on a
+phone rather than pushing the page sideways.
 
-A project missing its `hours` figure renders a **flagged em-dash**, so an
-unreported project is visibly unreported rather than silently blank.
+An earlier draft of this site scored projects by reach/cost/hours — the club
+does not currently report those figures per project, so the table was
+simplified rather than filled with invented numbers.
 
 ---
 
@@ -80,8 +79,10 @@ unreported project is visibly unreported rather than silently blank.
 
 ### Add a project
 
-Append to `content/projects.ts`. The ledger reads `impact` entries by **id** —
-`reach`, `cost` and `hours` are the three columns, so use those ids:
+Append to `content/projects.ts`. `category` must be one of the values in
+`categoryLabel` in `components/LedgerTable.tsx` (add a new one there too if
+you introduce a category). `impact` is optional free-form highlight stats —
+not tied to fixed table columns:
 
 ```ts
 {
@@ -91,22 +92,17 @@ Append to `content/projects.ts`. The ledger reads `impact` entries by **id** —
   summary: 'One sentence for the ledger row.',
   story: ['Paragraph one.', 'Paragraph two.'],
   category: 'health',
-  year: '2025/26',
-  date: '2026-01-12',
-  location: 'Colombo South Teaching Hospital',
+  year: '2026/27',
+  date: '2027-01-12',
   featured: true,
-  heroImage: { src: '/images/projects/ward-linen.jpg',
-               alt: 'Describe what is happening', width: 1600, height: 1000 },
-  impact: [
-    { id: 'reach', value: 240, label: 'People reached' },
-    { id: 'cost',  value: 186000, prefix: 'Rs ', label: 'Total cost' },
-    { id: 'hours', value: 320, label: 'Volunteer hours' },
+  heroImage: { src: '/images/projects/ward-linen/hero.jpg',
+               alt: 'Describe what is happening', width: 2200, height: 1238 },
+  gallery: [
+    { src: '/images/projects/ward-linen/g1.jpg', alt: 'Describe the photo', width: 900, height: 1600 },
   ],
+  impact: [{ id: 'linens', value: 100, label: 'Linens donated' }],
 }
 ```
-
-Projects that fell short stay in the table — that is the club's stated rule, and
-`exam-support` is the worked example of it.
 
 ### Add a board member
 
@@ -128,9 +124,9 @@ load. `.jpg`/`.webp` only; **HEIC does not render in browsers.**
 - `prefers-reduced-motion` respected; all content readable with JavaScript off.
 - `typedRoutes` on — a link to a route that does not exist **fails the build**.
 - `images.remotePatterns` deliberately empty.
-- The membership form composes a real pre-filled email.
-- The footer carries a **basis of preparation** note explaining how reach, hours
-  and costs were counted. Keep it accurate if the method changes.
+- Joining routes to the club's real Google Form
+  (`https://forms.gle/fWkLYHQM4p6fkqS96`); `JoinForm` is kept as a secondary
+  "have a question first" contact path, not the membership pathway.
 
 ---
 
@@ -141,6 +137,24 @@ Every route prerenders. Set `siteUrl` in `content/club.ts`, then
 
 ## Outstanding content
 
-Everything marked `TODO(content)` needs real values. Images in `public/images/`
-are generated solid-colour placeholders. The site renders correctly while these
-are incomplete.
+This site now runs on real data from the club's Project Web Weavers
+submission, with real photography for the logo, hero, three officers and
+three of the four 2026/27 projects. What's still missing rather than
+fabricated:
+
+- **13 of 16 board members** have no photo on file — they render the
+  `getInitials` monogram fallback in `Photo`/board cards instead of an image.
+- **Hot Takes FC — FIFA '26** has no photograph; it uses the shared
+  `/images/projects/placeholder.png`.
+- **Meeting day, time and venue** were left blank on the submission form and
+  are not shown rather than guessed.
+- The **2018/19** president is missing from `content/past-presidents.ts` (a
+  gap in the source data), and **2013/14** is recorded with no name.
+- District-convention submission categories (e.g. "Best Project for Hunger")
+  are noted in project `story` text as *submitted in the category of…*, not
+  claimed as wins — the form doesn't state an outcome for them. The one
+  confirmed award lives in `content/achievements.ts`.
+
+`scripts_resize.py` in the project root is the one-off Pillow script used to
+process the source photos into `public/images/`; it is not part of the app
+and is safe to delete.

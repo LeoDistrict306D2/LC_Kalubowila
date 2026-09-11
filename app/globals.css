@@ -1,16 +1,13 @@
 @import 'tailwindcss';
 
 /*
- * Leo Club of Kalubowila — "Care Ledger"
+ * Leo Club of Kalubowila — "Beyond Titles"
  *
- * Kalubowila is a teaching-hospital neighbourhood, and the club's work reflects
- * that: clinical, counted, reported. So the site is built like an annual
- * report rather than a brochure. Projects live in a real data table with
- * right-aligned figures. Statistics are the primary content, not a decorative
- * band.
- *
- * The discipline: no adjective appears where a number would do. If a claim
- * cannot be counted, it does not go on the page.
+ * The club's own brand colours — Deep Teal, Teal and Silver — carry the site.
+ * The motion and card language (glass cards, ambient glow, gradient text,
+ * scroll reveals, Ken Burns hero) follows the pattern of the district's own
+ * sites, kept in this club's light theme and teal palette rather than copied
+ * wholesale — same energy, this club's colours.
  *
  * Token names are ROLES, not hues.
  */
@@ -18,25 +15,24 @@
 @theme {
   /* --- Surfaces ------------------------------------------------------- */
   --color-page: #ffffff;
-  --color-panel: #f3f7f7;
-  --color-inverse: #0f3d41;
-  --color-on-inverse: #eaf4f4;
+  --color-panel: #f2f5f5;
+  --color-inverse: #023131;
+  --color-on-inverse: #e9f4f4;
 
   /* --- Text ----------------------------------------------------------- */
-  --color-ink: #10262a;
-  --color-ink-muted: #46605f;
+  --color-ink: #0c2323;
+  --color-ink-muted: #45605f;
   --color-ink-faint: #7b908f;
 
   /* --- Accents --------------------------------------------------------- */
-  /* Teal carries interaction. Coral marks a figure that needs attention —
-     used sparingly, never as a background for body text. */
-  --color-accent: #0f5257;
-  --color-accent-strong: #093a3e;
-  --color-flag: #c9503f;
+  /* The club's own brand colours: Teal carries interaction, Deep Teal is the
+     closing/inverse band. */
+  --color-accent: #057a7a;
+  --color-accent-strong: #023131;
 
   /* --- Lines ----------------------------------------------------------- */
-  --color-rule: #dde8e8;
-  --color-rule-strong: #b3c8c7;
+  --color-rule: #dde6e6;
+  --color-rule-strong: #c2cfcf;
 
   /* --- Type ------------------------------------------------------------ */
   --font-heading: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
@@ -47,6 +43,45 @@
   --text-report--letter-spacing: -0.03em;
 
   --ease-precise: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* --- Motion ------------------------------------------------------------ */
+  --animate-fade-up: fadeUp 0.8s var(--ease-spring) both;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-ken-burns: kenBurns 16s ease-out infinite alternate;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(6px) rotate(-1deg);
+  }
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.09);
+  }
 }
 
 @layer base {
@@ -176,23 +211,83 @@
     background-color: var(--color-panel);
   }
 
-  /* A figure that needs attention — a decline, a shortfall, a target missed. */
-  .flagged {
-    color: var(--color-flag);
-  }
-
   /*
-   * Reveal. Short and precise: a report should feel typeset, not animated.
+   * Reveal — a fuller fade-up-on-scroll, matching the motion language of the
+   * district's own sites.
    */
   .reveal {
     transition:
-      opacity 350ms var(--ease-precise),
-      transform 350ms var(--ease-precise);
+      opacity 550ms var(--ease-spring),
+      transform 550ms var(--ease-spring);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
   .reveal.is-hidden {
     opacity: 0;
-    transform: translateY(0.5rem);
+    transform: translateY(1.5rem) scale(0.98);
+  }
+
+  /*
+   * Glass card — translucent, blurred, lifts and glows on hover. The
+   * lightweight version of the pattern the district's sites use for cards.
+   */
+  .glass-card {
+    background: color-mix(in srgb, var(--color-page) 78%, transparent);
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-rule);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    box-shadow:
+      0 10px 30px rgba(2, 49, 49, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 300ms var(--ease-spring);
+  }
+
+  .glass-card:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
+    box-shadow:
+      0 16px 40px rgba(2, 49, 49, 0.12),
+      0 0 0 1px color-mix(in srgb, var(--color-accent) 12%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-3px);
+  }
+
+  /* Gradient-filled headline word — used sparingly, one phrase per page. */
+  .gradient-text {
+    background-image: linear-gradient(
+      135deg,
+      var(--color-accent) 0%,
+      #0aa5a5 45%,
+      var(--color-accent-strong) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Faint structural texture behind a hero or band — signals "designed", not
+     decoration meant to be noticed on its own. */
+  .grid-pattern {
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--color-ink) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-ink) 5%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 56px 56px;
+  }
+
+  .animation-delay-150 {
+    animation-delay: 150ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-450 {
+    animation-delay: 450ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
   }
 }

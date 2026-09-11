@@ -38,6 +38,7 @@ const rankOrder: Record<ExecutiveRank, number> = {
   chairperson: 8,
   director: 9,
   member: 10,
+  advisor: 11,
 };
 
 /** Conventional board order. An explicit `order` always wins. */

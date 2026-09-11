@@ -23,16 +23,27 @@ export function Photo({
   priority = false,
   sizes = '100vw',
   className,
+  frameClassName,
+  roundedFull = false,
 }: {
   image: ImageRef;
   ratio?: keyof typeof ratios;
   priority?: boolean;
   sizes?: string;
   className?: string;
+  frameClassName?: string;
+  roundedFull?: boolean;
 }) {
   return (
     <figure className={cn('m-0', className)}>
-      <div className={cn('relative overflow-hidden bg-panel', ratios[ratio])}>
+      <div
+        className={cn(
+          'relative overflow-hidden bg-panel',
+          ratios[ratio],
+          roundedFull && 'rounded-full',
+          frameClassName,
+        )}
+      >
         <Image
           src={image.src}
           alt={image.alt}

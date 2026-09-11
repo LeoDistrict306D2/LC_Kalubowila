@@ -3,20 +3,24 @@ import type { Club } from '@/lib/types';
 /**
  * Leo Club of Kalubowila — club record.
  *
- * The voice here is deliberately plain and numeric: this club reports rather
- * than promotes. Copy should avoid adjectives where a figure is available.
- *
- * TODO(content): charter date, roster, contact details and photography are
- * placeholders pending real values from the club.
+ * Source: the club's Project Web Weavers content form, returned to the
+ * district on 2026-09-11, plus the photos and branding files supplied
+ * alongside it. Every fact below traces back to that submission — see
+ * README.md for what is still outstanding (meeting day/time/venue was left
+ * blank on the form, and most officers do not have a photo on file yet).
  */
 export const club: Club = {
   name: 'Leo Club of Kalubowila',
   shortName: 'Kalubowila',
-  tagline: 'Everything here is counted.',
-  motto: 'Leadership · Experience · Opportunity',
+  tagline: 'Beyond titles. Into the work.',
+  motto: 'Beyond Titles',
   description:
-    'A Leo club serving the Kalubowila and Dehiwala hospital catchment. We publish what each project cost, how many people it reached, and what happened when we went back — because a service report without figures is just a claim.',
-  charterDate: '2014-05-30',
+    'A Leo club in Kalubowila, chartered in 2001. For over two decades it has been a training ground for young leaders — several of whom have gone on to prominent roles across the wider Leo movement.',
+  charterDate: '2001-11-13',
+  clubNumber: '74159/1139',
+  clubType: 'Community Based',
+  region: 'Region A',
+  zone: 'Zone A1',
 
   district: 'Leo District 306 D2',
   multipleDistrict: 'Leo Multiple District 306',
@@ -25,87 +29,95 @@ export const club: Club = {
   multipleDistrictUrl: 'https://www.leomd306.org/',
 
   logo: {
-    src: '/images/logo/logo.png',
+    src: '/images/logo/logo.jpg',
     alt: 'Leo Club of Kalubowila emblem',
-    width: 512,
-    height: 512,
+    width: 782,
+    height: 800,
   },
   heroImage: {
-    src: '/images/hero/hero.png',
-    alt: 'Leo Club of Kalubowila volunteers at a hospital ward support session',
-    width: 1800,
-    height: 900,
+    src: '/images/hero/hero.jpg',
+    alt: 'Leo Club of Kalubowila members and officers at a club banner event',
+    width: 1920,
+    height: 1080,
   },
 
   contact: {
-    email: 'leoclubofkalubowila@gmail.com',
-    address: 'Kalubowila, Dehiwala, Sri Lanka',
+    email: 'leoclub.kalubowila@gmail.com',
+    phone: '+94 76 689 8916',
+    address: 'Leo Club of Kalubowila, Colombo, Sri Lanka',
   },
 
   socials: {
-    facebook: 'https://www.facebook.com/leoclubofkalubowila',
-    instagram: 'https://www.instagram.com/leokalubowila',
-    email: 'leoclubofkalubowila@gmail.com',
+    facebook: 'https://www.facebook.com/share/19NHvak6qT/?mibextid=wwXIfr',
+    instagram: 'https://www.instagram.com/leos_of_kalubowila?stkn=aWk4OTJscWZmamkx&utm_source=qr',
+    linkedin: 'https://www.linkedin.com/company/leo-club-of-kalubowila/',
+    youtube: 'https://youtube.com/@leosofkalubowila4579?si=g2wU2Bum2vn29TGi',
+    tiktok: 'https://www.tiktok.com/@leos_of_kalubowila?_r=1&_t=ZS-99db7pjN8j9',
+    whatsapp: 'https://whatsapp.com/channel/0029VbBFyot2P59hmKAIA22n',
+    email: 'leoclub.kalubowila@gmail.com',
   },
 
   siteUrl: 'https://kalubowila.leo306d2.org',
 
+  donations: {
+    bank: 'Hatton National Bank',
+    branch: 'Maharagama',
+    accountNumber: '064020481195',
+  },
+
   stats: [
-    { id: 'years', value: 11, label: 'Years of service' },
-    { id: 'members', value: 46, label: 'Active members' },
-    { id: 'projects', value: 83, label: 'Projects reported' },
     {
-      id: 'reached',
-      value: 12400,
-      label: 'People reached',
-      note: 'Counted once per person per project, not per visit.',
+      id: 'years',
+      value: 24,
+      label: 'Years of service',
+      note: 'Chartered 13 November 2001.',
+    },
+    { id: 'members', value: 28, label: 'Active members' },
+    {
+      id: 'board',
+      value: 16,
+      label: 'Board & officers',
+      note: '2026/27 term, installed at ORCENZA’26.',
     },
     {
-      id: 'spend',
-      value: 4820000,
-      prefix: 'Rs ',
-      label: 'Total spend',
-      note: 'Cumulative since charter. Annual accounts are tabled at the AGM.',
-    },
-    {
-      id: 'hours',
-      value: 9700,
-      label: 'Volunteer hours',
-      note: 'Logged per session, not estimated at year end.',
+      id: 'awards',
+      value: 1,
+      label: 'District award',
+      note: 'Most Outstanding Community Based Club, Leoistic Year 2024/25.',
     },
   ],
 
   about: {
     story: [
-      'Kalubowila is a hospital town. The Colombo South Teaching Hospital sits at its centre, and a good part of what the club does happens within a kilometre of its gates — ward support, blood drives, meals for the families of long-stay patients who have travelled from outside the district.',
-      'The club was chartered in 2014. For the first four years it kept no figures worth the name, which meant nobody could tell whether the same things were working or whether we were simply doing them again.',
-      'That changed in 2018. Every project now reports four things before it closes: what it cost, how many people it reached, how many hours went into it, and what happened at the follow-up. Those four numbers are on this website for every project since.',
-      'It is a less flattering way to present a club. It is also the only honest one.',
+      'Founded in 2001, the Leo Club of Kalubowila has grown into a beacon of youth leadership and service in the community. For over two decades the club has been more than an organisation — it has been a training ground for passionate young leaders, nurturing individuals who have gone on to become prominent figures across the wider Leo movement.',
+      'That legacy rests on a plain motto: Beyond Titles. A position on the board carries responsibility, not privilege, and the club holds every member — from a first-term Project Director to the President — to the same standard of showing up and doing the work.',
+      'In the 2024/25 Leoistic year the club was named Most Outstanding Community Based Club at district level. The projects behind that recognition — an environmental planting drive run jointly with the Lions Club of Colombo Kalubowila, a Bodhi Pooja marking the start of the new Leoistic year, and an installation ceremony inducting each incoming board — are the club’s ongoing programme, not a highlight reel assembled for this page.',
+      'The club now runs on a board of sixteen: a President, three Vice Presidents, a Secretary and Treasurer with their assistants, a Chief Editor and Editorial Director, four Project Directors, an Immediate Past President, and a Lion Advisor — serving a membership of around thirty.',
     ],
     mission:
-      'To provide sustained support to patients, families and schools in the Kalubowila catchment, and to report every project in figures that can be checked.',
+      'To empower individuals through leadership, service and unity to make a meaningful difference in society.',
     vision:
-      'A club whose annual report would survive an audit, and whose projects would survive a second look.',
+      'With every project and every initiative, the Leo Club of Kalubowila stands as a living testament to the power of youth united in purpose.',
     values: [
       {
-        title: 'Report the cost',
+        title: 'Beyond Titles',
         description:
-          'Every project publishes what it spent. A project nobody can cost is a project nobody can repeat.',
+          'Our motto. Responsibility is not attached to a position — every member, whatever their title, is expected to do the work.',
       },
       {
-        title: 'Count people once',
+        title: 'Leadership',
         description:
-          'Reach is counted per person per project, not per visit. Inflating a number is the easiest way to lose the right to quote it.',
+          'Two decades of training young leaders, several of whom have gone on to prominent roles across the Leo movement.',
       },
       {
-        title: 'Log hours as they happen',
+        title: 'Service',
         description:
-          'Volunteer hours are recorded at each session. Year-end estimates are guesses wearing a suit.',
+          'Community service delivered consistently in the neighbourhoods around Kalubowila, not occasionally.',
       },
       {
-        title: 'Publish the misses',
+        title: 'Unity',
         description:
-          'Projects that fell short stay in the table, flagged. Removing them would make the rest meaningless.',
+          'Run through partnership — with the Lions Club of Colombo Kalubowila, local schools, and the wider district — rather than alone.',
       },
     ],
   },

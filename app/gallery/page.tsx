@@ -31,7 +31,7 @@ export default function GalleryPage() {
               href="/projects"
               className="mt-6 inline-block text-sm text-accent hover:text-accent-strong"
             >
-              Go to the ledger →
+              Go to projects →
             </Link>
           </div>
         ) : (

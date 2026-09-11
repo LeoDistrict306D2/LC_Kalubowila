@@ -18,7 +18,7 @@ import { cn } from '@/lib/utils';
  */
 const nav = [
   { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Ledger' },
+  { href: '/projects', label: 'Projects' },
   { href: '/board', label: 'Board' },
   { href: '/past-presidents', label: 'Presidents' },
   { href: '/achievements', label: 'Awards' },
@@ -29,6 +29,8 @@ const nav = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -39,6 +41,17 @@ export function SiteHeader() {
     setMenuPathname(pathname);
     setOpen(false);
   }
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -62,10 +75,27 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-ink bg-page/97 backdrop-blur-sm">
+    <header
+      className={cn(
+        'sticky top-0 z-50 transition-all duration-300',
+        scrolled
+          ? 'border-b border-rule bg-page/90 shadow-[0_8px_28px_rgba(2,49,49,0.08)] backdrop-blur-xl'
+          : 'border-b-2 border-transparent bg-page/60 backdrop-blur-sm',
+      )}
+    >
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 h-[2px] origin-left bg-gradient-to-r from-accent via-[#0aa5a5] to-accent transition-transform duration-150"
+        style={{ width: '100%', transform: `scaleX(${scrollProgress / 100})` }}
+      />
+
       <div className="wrap flex h-20 items-center justify-between gap-6">
-        <Link href="/" className="flex flex-col gap-1" aria-label={`${club.name} — home`}>
-          <span className="font-heading text-lg leading-none font-semibold tracking-tight text-ink">
+        <Link
+          href="/"
+          className="group flex flex-col gap-1"
+          aria-label={`${club.name} — home`}
+        >
+          <span className="font-heading text-lg leading-none font-semibold tracking-tight text-ink transition-transform duration-300 group-hover:translate-x-0.5">
             Leo Club of {club.shortName}
           </span>
           <span className="font-heading text-[0.65rem] font-semibold tracking-[0.16em] text-ink-faint uppercase">
@@ -97,7 +127,7 @@ export function SiteHeader() {
 
         <Link
           href="/join"
-          className="hidden shrink-0 bg-accent px-5 py-2.5 font-heading text-sm font-semibold text-page transition-colors hover:bg-accent-strong lg:inline-block"
+          className="hidden shrink-0 rounded-full bg-gradient-to-r from-accent to-[#0aa5a5] px-5 py-2.5 font-heading text-sm font-semibold text-page shadow-[0_0_12px_rgba(5,122,122,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(5,122,122,0.4)] lg:inline-block"
         >
           Join
         </Link>
@@ -143,7 +173,7 @@ export function SiteHeader() {
           </ul>
           <Link
             href="/join"
-            className="mt-4 mb-4 block bg-accent px-4 py-3 text-center font-heading text-sm font-semibold text-page"
+            className="mt-4 mb-4 block rounded-full bg-gradient-to-r from-accent to-[#0aa5a5] px-4 py-3 text-center font-heading text-sm font-semibold text-page shadow-[0_0_12px_rgba(5,122,122,0.25)]"
           >
             Join the club
           </Link>

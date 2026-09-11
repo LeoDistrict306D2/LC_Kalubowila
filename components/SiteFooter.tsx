@@ -1,11 +1,20 @@
 import Link from 'next/link';
-import { Facebook, Instagram, Mail } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MessageCircle, Music2, Youtube } from 'lucide-react';
 import { club } from '@/content/club';
+
+const socialIcons = [
+  { key: 'facebook', label: 'Facebook', Icon: Facebook },
+  { key: 'instagram', label: 'Instagram', Icon: Instagram },
+  { key: 'linkedin', label: 'LinkedIn', Icon: Linkedin },
+  { key: 'youtube', label: 'YouTube', Icon: Youtube },
+  { key: 'tiktok', label: 'TikTok', Icon: Music2 },
+  { key: 'whatsapp', label: 'WhatsApp channel', Icon: MessageCircle },
+] as const;
 
 /**
  * Footer, set as a report colophon: the affiliation chain as a printed
- * sentence, plus a note on how the figures elsewhere on the site were
- * compiled — because a report that does not say how it counted is not a report.
+ * sentence, plus a credit line for the district-wide initiative this site was
+ * built under.
  *
  * A server component: no state, and the year resolves at build time.
  */
@@ -22,7 +31,7 @@ const columns = [
   {
     heading: 'The work',
     links: [
-      { href: '/projects', label: 'Project ledger' },
+      { href: '/projects', label: 'Projects' },
       { href: '/gallery', label: 'Gallery' },
     ],
   },
@@ -49,33 +58,24 @@ export function SiteFooter() {
               {club.description}
             </p>
 
-            <ul className="mt-6 flex gap-3">
-              {club.socials.facebook ? (
-                <li>
-                  <a
-                    href={club.socials.facebook}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="Facebook"
-                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <Facebook aria-hidden size={17} />
-                  </a>
-                </li>
-              ) : null}
-              {club.socials.instagram ? (
-                <li>
-                  <a
-                    href={club.socials.instagram}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="Instagram"
-                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <Instagram aria-hidden size={17} />
-                  </a>
-                </li>
-              ) : null}
+            <ul className="mt-6 flex flex-wrap gap-3">
+              {socialIcons.map(({ key, label, Icon }) => {
+                const href = club.socials[key];
+                if (!href) return null;
+                return (
+                  <li key={key}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label={label}
+                      className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
+                    >
+                      <Icon aria-hidden size={17} />
+                    </a>
+                  </li>
+                );
+              })}
               {club.contact.email ? (
                 <li>
                   <a
@@ -113,20 +113,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Basis of preparation — the note that makes the figures usable. */}
-        <div className="mt-14 border-t border-rule pt-6">
-          <h2 className="font-heading text-xs font-semibold tracking-[0.16em] text-ink-faint uppercase">
-            How these figures were compiled
-          </h2>
-          <p className="measure mt-3 text-xs leading-relaxed text-ink-faint">
-            Reach is counted once per person per project, not per visit. Volunteer hours are
-            logged at each session rather than estimated at year end. Costs are actual spend,
-            inclusive of donated goods valued at replacement cost. Projects that fell short of
-            plan remain in the ledger and are flagged rather than removed.
-          </p>
-        </div>
-
-        <p className="mt-8 border-t border-rule pt-6 text-xs leading-relaxed text-ink-faint">
+        <p className="mt-14 border-t border-rule pt-6 text-xs leading-relaxed text-ink-faint">
           {club.name} is a member club of{' '}
           <a
             href={club.districtUrl}
@@ -151,6 +138,11 @@ export function SiteFooter() {
 
         <p className="mt-3 text-xs text-ink-faint">
           © {year} {club.name}. {club.contact.address}
+        </p>
+
+        <p className="mt-3 text-xs text-ink-faint">
+          Built as part of Leo District 306 D2&rsquo;s{' '}
+          <span className="text-ink-muted">Project Web Weavers</span> — one district, one web.
         </p>
       </div>
     </footer>
