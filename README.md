@@ -157,4 +157,8 @@ fabricated:
 
 `scripts_resize.py` in the project root is the one-off Pillow script used to
 process the source photos into `public/images/`; it is not part of the app
-and is safe to delete.
+and is safe to delete. `scripts_map.py` is a second one-off script that
+recoloured the district's own map asset (from the D2 district site's repo,
+`public/images/D2-map-gold.png`) from gold to this club's teal for
+`public/images/district/map.png`, used in the "Part of a wider network"
+sections on `/about` and the home page; also safe to delete.
