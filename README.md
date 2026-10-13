@@ -138,12 +138,13 @@ Every route prerenders. Set `siteUrl` in `content/club.ts`, then
 ## Outstanding content
 
 This site now runs on real data from the club's Project Web Weavers
-submission, with real photography for the logo, hero, three officers and
+submission, with real photography for the logo, hero, thirteen officers and
 three of the four 2026/27 projects. What's still missing rather than
 fabricated:
 
-- **13 of 16 board members** have no photo on file — they render the
-  `getInitials` monogram fallback in `Photo`/board cards instead of an image.
+- **3 of 16 board members** (Chief Editor, one Project Director, and the
+  Lion Advisor) have no photo on file — they render the `getInitials`
+  monogram fallback in `Photo`/board cards instead of an image.
 - **Hot Takes FC — FIFA '26** has no photograph; it uses the shared
   `/images/projects/placeholder.png`.
 - **Meeting day, time and venue** were left blank on the submission form and
@@ -155,10 +156,8 @@ fabricated:
   claimed as wins — the form doesn't state an outcome for them. The one
   confirmed award lives in `content/achievements.ts`.
 
-`scripts_resize.py` in the project root is the one-off Pillow script used to
-process the source photos into `public/images/`; it is not part of the app
-and is safe to delete. `scripts_map.py` is a second one-off script that
-recoloured the district's own map asset (from the D2 district site's repo,
-`public/images/D2-map-gold.png`) from gold to this club's teal for
-`public/images/district/map.png`, used in the "Part of a wider network"
-sections on `/about` and the home page; also safe to delete.
+`scripts_resize.py`, `scripts_officers2.py` and `scripts_map.py` in the
+project root are one-off Pillow scripts used to process source photos into
+`public/images/` (the second batch of officer photos, and the district map
+recoloured from the D2 district site's gold to this club's teal,
+respectively); none are part of the app and all are safe to delete.

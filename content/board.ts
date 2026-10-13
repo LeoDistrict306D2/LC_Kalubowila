@@ -4,8 +4,8 @@ import type { Executive } from '@/lib/types';
  * Executive board, 2026/27 term — installed at ORCENZA’26 (22 August 2026).
  *
  * `order` is set explicitly on every member, matching the sequence in the
- * club's official submission exactly. Only three officers have a photo on
- * file; the rest render with initials until one is supplied.
+ * club's official submission exactly. Twelve of sixteen officers now have a
+ * photo on file; the rest render with initials until one is supplied.
  */
 export const board: Executive[] = [
   {
@@ -15,6 +15,7 @@ export const board: Executive[] = [
     rank: 'president',
     term: '2026/27',
     order: 0,
+    photo: { src: '/images/board/savindi-dias.jpg', alt: 'Leo Lion Savindi Dias', width: 733, height: 1100 },
   },
   {
     id: 'vp1',
@@ -32,6 +33,7 @@ export const board: Executive[] = [
     rank: 'vice-president',
     term: '2026/27',
     order: 2,
+    photo: { src: '/images/board/bihanga-nethsith.jpg', alt: 'Leo Bihanga Nethsith', width: 352, height: 493 },
   },
   {
     id: 'vp3',
@@ -40,6 +42,7 @@ export const board: Executive[] = [
     rank: 'vice-president',
     term: '2026/27',
     order: 3,
+    photo: { src: '/images/board/sanoli-senevirathne.jpg', alt: 'Leo Sanoli Senevirathne', width: 968, height: 1100 },
   },
   {
     id: 'secretary',
@@ -48,6 +51,7 @@ export const board: Executive[] = [
     rank: 'secretary',
     term: '2026/27',
     order: 4,
+    photo: { src: '/images/board/thinesa-welagedra.jpg', alt: 'Leo Thinesa Welagedra', width: 760, height: 1100 },
   },
   {
     id: 'assistant-secretary',
@@ -56,6 +60,7 @@ export const board: Executive[] = [
     rank: 'assistant-secretary',
     term: '2026/27',
     order: 5,
+    photo: { src: '/images/board/inuri-hasanga.jpg', alt: 'Leo Inuri Hasanga', width: 760, height: 1100 },
   },
   {
     id: 'treasurer',
@@ -64,6 +69,7 @@ export const board: Executive[] = [
     rank: 'treasurer',
     term: '2026/27',
     order: 6,
+    photo: { src: '/images/board/nethnan-jayawickrama.jpg', alt: 'Leo Nethnan Jayawickrama', width: 733, height: 1100 },
   },
   {
     id: 'assistant-treasurer',
@@ -72,6 +78,7 @@ export const board: Executive[] = [
     rank: 'assistant-treasurer',
     term: '2026/27',
     order: 7,
+    photo: { src: '/images/board/nethmi-kulatilleke.jpg', alt: 'Leo Nethmi Kulatilleke', width: 825, height: 1100 },
   },
   {
     id: 'chief-editor',
@@ -97,6 +104,7 @@ export const board: Executive[] = [
     rank: 'director',
     term: '2026/27',
     order: 10,
+    photo: { src: '/images/board/salisa-de-silva.jpg', alt: 'Leo Salisa De Silva', width: 1100, height: 1100 },
   },
   {
     id: 'project-director-2',
@@ -113,6 +121,7 @@ export const board: Executive[] = [
     rank: 'director',
     term: '2026/27',
     order: 12,
+    photo: { src: '/images/board/prabodha-udani.jpg', alt: 'Leo Prabodha Udani', width: 493, height: 571 },
   },
   {
     id: 'project-director-4',
@@ -130,6 +139,7 @@ export const board: Executive[] = [
     rank: 'immediate-past-president',
     term: '2026/27',
     order: 14,
+    photo: { src: '/images/board/kavindu-gimhan.jpg', alt: 'Leo Kavindu Gimhan', width: 825, height: 1100 },
   },
   {
     id: 'advisor',

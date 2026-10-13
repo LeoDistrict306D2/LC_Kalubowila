@@ -82,6 +82,7 @@ export const projects: Project[] = [
     },
     gallery: [
       { src: '/images/projects/sadaham-wandana/g1.jpg', alt: 'Club members at the Sadaham Wandana Bodhi Pooja', width: 1200, height: 1600 },
+      { src: '/images/projects/sadaham-wandana/g2.jpg', alt: 'Club members at the Sadaham Wandana Bodhi Pooja', width: 1200, height: 1600 },
     ],
     story: [
       'The Sadaham Wandana Bodhi Pooja was organised to invoke blessings for the new Leoistic year. The ceremony was graced by the District President, club executives, and fellow members, who gathered in unity and devotion to begin the year with spiritual strength and guidance.',
