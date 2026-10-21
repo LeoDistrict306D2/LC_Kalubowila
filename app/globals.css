@@ -290,4 +290,54 @@
   .animation-delay-600 {
     animation-delay: 600ms;
   }
+
+  /*
+   * Entry splash. Pure CSS — no client JS — so it degrades correctly with
+   * JavaScript off. The glass card rises in on `.animate-fade-up`; the glow
+   * pulses behind it; the bar fills once; then the whole sheet fades out.
+   */
+  .splash-screen {
+    animation: splash-out 450ms var(--ease-spring) 2400ms forwards;
+  }
+
+  .splash-glow {
+    animation: splash-pulse 3s ease-in-out infinite;
+  }
+
+  .splash-bar-fill {
+    width: 0%;
+    animation: splash-fill 2.2s var(--ease-precise) forwards;
+  }
+
+  @keyframes splash-out {
+    to {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  @keyframes splash-pulse {
+    0%,
+    100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.12);
+    }
+  }
+
+  @keyframes splash-fill {
+    to {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .splash-screen {
+      animation-delay: 0ms;
+    }
+  }
 }
